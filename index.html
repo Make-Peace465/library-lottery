@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <p class="display"></p>
+            <button class="lotteryButton">Pick a prize now!</button>
+        </div>
+
+        <div class="right-panel">
+            <table id="myTable">
+            <tr>
+                <th>Prize</th>
+                <th>Quantity</th>
+            </tr>
+            <tr>
+                <td>Stuffed Animals</td>
+                <td>20</td>
+            </tr>
+            <tr>
+                <td>cups</td>
+                <td>20</td>
+            </tr>
+            <tr>
+                <td>Notebooks</td>
+                <td>20</td>
+            </tr>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        let onlineCoursePrize = [
+            {
+                name: "Stuffed Animals",
+                quantity: 20,
+            },
+            {
+                name: "cups",
+                quantity: 20,
+            },
+            {
+                name: "Notebooks",
+                quantity: 20,
+            }
+        ]
+
+        const display = document.querySelector(".display");
+        const button = document.querySelector(".lotteryButton");
+        const prizeTable = document.querySelector("#myTable")
+
+        function lottery() {
+            display.textContent = "";
+
+            //Clear the table
+            // removeTableRow();
+
+            setTimeout(() => {
+            //Generate a random Number and find the prize
+            let ranNum = getRandomIntInclusive(0, onlineCoursePrize.length-1);
+            let prize = onlineCoursePrize[ranNum];
+            
+            //Display the prize name on the screen
+            display.textContent = prize.name;
+
+            //Decrease the prize quantity by 1
+            prize.quantity -= 1;
+            
+            //Check and remove the item that it's prize quantity is already zero
+            onlineCoursePrize = onlineCoursePrize.filter(item => item.quantity > 0);
+            
+            //Generate a table for the prize items and prize quantity
+
+            //Access table by its ID
+            let table = document.querySelector("#myTable");
+
+            //Accessing Rows and Cells, select rows and cells within a table
+            let rows = table.rows;
+
+            //Update the content instead of generating a new table everytime
+            for (let i = 0; i < prizeTable.rows.length; i++) {
+                let cells = rows[i].cells;
+                for (j = 0; j < cells.length; j++) {
+                    if (cells[j].textContent === prize.name) {
+                        cells[j+1].textContent = prize.quantity
+                    }
+                }
+            }
+            //Iterating over cells: Looping through cells to access their data
+            // for (let i = 0; i < onlineCoursePrize.length; i++) {
+            //     //Create a new row
+            //     let newRow = document.createElement("tr");
+            //     prizeTable.appendChild(newRow);
+            //     //Add the td to the row
+            //     let newCell_1 = document.createElement("td");
+            //     let newCell_2 = document.createElement("td");
+            //     //Add text content
+            //     newCell_1.textContent = onlineCoursePrize[i]["name"];
+            //     newCell_2.textContent = onlineCoursePrize[i]["quantity"];
+            //     newRow.appendChild(newCell_1);
+            //     newRow.appendChild(newCell_2);
+            // }
+        }, "1000");
+        };
+        
+        function removeTableRow() {
+            while (prizeTable.rows.length > 1) {
+                prizeTable.deleteRow(-1);
+            }
+            console.log(prizeTable);
+        }
+
+        function getRandomIntInclusive(min, max) {
+            //Math.ceil() round up and returns the smallest integer gratern than or equal to a given number
+            const minCeiled = Math.ceil(min);
+            //Math.floor() round down the number and return the largest integer less than or equal to a given number
+            const maxFloored = Math.floor(max);
+            return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
+        }
+
+        button.addEventListener("click", lottery);
+
+    </script>
+</body>
+</html>
