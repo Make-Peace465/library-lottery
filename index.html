@@ -95,6 +95,9 @@
             //Store the value to localStorage:
             localStorage.setItem("onlineCoursePrize", JSON.stringify(onlineCoursePrize));
             console.log(localStorage);
+
+            //enabled the button
+            button.disabled = false;
         }, "1000");
         };
         
@@ -130,7 +133,10 @@
                 }
         };
 
-        button.addEventListener("click", lottery);
+        button.addEventListener("click", () => {
+            button.disabled = true;
+            lottery();
+        });
 
     </script>
 </body>
