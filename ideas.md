@@ -65,14 +65,14 @@ Possible considerations:
     - If the user click more than once, the stock will decrease by 1 more 
 
 Question:
-- is the key of the object actually a variable?
-- How to create a table with javascript so that it will get updated every single time?
-- How to use settimeout with button?
-- What's the difference bewteen innerHTML and appendChild?
+1. is the key of the object actually a variable?
+2. How to create a table with javascript so that it will get updated every single time?
+3. How to use settimeout with button?
+4. What's the difference bewteen innerHTML and appendChild?
     append adds element objects (or text) while innerHTML parses HTML strings. They're two different methods/properties that are designed to do two different things. You can read more about their capabilities on MDN:
     - https://developer.mozilla.org/en-US/docs/Web/API/Element/append
     - https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML
-- How to clear table content with javascript? 
+5. How to clear table content with javascript? 
     FUNCTION deleteTableRow():
         FOR (i is equals to 0; when i is smaller than onlineCoursePrize.length; i increase by 1 after the iteration):
             prizeTable.deleteRow(i);
@@ -87,8 +87,36 @@ Question:
         prizeTable.deleteRow(-1);
     END WHILE
 
-- How to find the total number of table rows?
+6. How to find the total number of table rows?
     - Use rows.length method
+
+7. How to storedata so that it does not get lost while retrieving it? 
+    - Use the localStorage method
+    - Steps involved:
+        - On Page Load
+            - Check if there's any prize data saved in localStorage
+            - If yes, getItem() and JSON.parse() into the onlineCoursePrize variable
+            - If no, use the default prize array
+
+            IF (localStorage is true):
+                onlineCoursePrize = JSON.parse(localStorage.getItem("onlineCoursePrize"));
+            END IF
+
+        - After evert clicked
+            - immediately save the new version to local storage using setItem() and JSON.stringify()
+            - localStorage.setItem("onlineCoursePrize", JSON.stringify(onlineCoursePrize));
+
+    - How to check if a localStorage is empty?
+        - Use the `localStorage.length` property
+            if (localStorage.length === 0) {
+                console.log("localStorage is empty.");
+            } else {
+                console.log("localStorage contains items.");
+            }
+
+8. How to clear local storage for a page
+    - Use your keyboard's F12 key to open the Google Chrome Developer Tools Console. Click Application in the console's top menu. Expand the Local storage list located under the Storage section in the console's left menu. Right-click your site(s) and click Clear to delete the local storage.
+
 
 Notes:
 1. It is dangerous to remove items from an array while you are looping forward through it. The loop can get confused and skip elements.
