@@ -18,19 +18,6 @@
             <tr>
                 <th>Prize</th>
                 <th>Quantity</th>
-            </tr>
-            <tr>
-                <td>Stuffed Animals</td>
-                <td>20</td>
-            </tr>
-            <tr>
-                <td>cups</td>
-                <td>20</td>
-            </tr>
-            <tr>
-                <td>Notebooks</td>
-                <td>20</td>
-            </tr>
             </table>
         </div>
     </div>
@@ -50,6 +37,18 @@
                 quantity: 20,
             }
         ]
+
+        window.addEventListener("load", (event) => {
+            if (localStorage.length === 0) {
+                console.log("localStorage is empty.");
+                creatingTable();
+            } else {
+                onlineCoursePrize = JSON.parse(localStorage.getItem("onlineCoursePrize"));
+                console.log(onlineCoursePrize);
+
+                creatingTable();
+            }
+        });
 
         const display = document.querySelector(".display");
         const button = document.querySelector(".lotteryButton");
@@ -92,20 +91,10 @@
                     }
                 }
             }
-            //Iterating over cells: Looping through cells to access their data
-            // for (let i = 0; i < onlineCoursePrize.length; i++) {
-            //     //Create a new row
-            //     let newRow = document.createElement("tr");
-            //     prizeTable.appendChild(newRow);
-            //     //Add the td to the row
-            //     let newCell_1 = document.createElement("td");
-            //     let newCell_2 = document.createElement("td");
-            //     //Add text content
-            //     newCell_1.textContent = onlineCoursePrize[i]["name"];
-            //     newCell_2.textContent = onlineCoursePrize[i]["quantity"];
-            //     newRow.appendChild(newCell_1);
-            //     newRow.appendChild(newCell_2);
-            // }
+
+            //Store the value to localStorage:
+            localStorage.setItem("onlineCoursePrize", JSON.stringify(onlineCoursePrize));
+            console.log(localStorage);
         }, "1000");
         };
         
@@ -123,6 +112,23 @@
             const maxFloored = Math.floor(max);
             return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
         }
+
+        function creatingTable() {
+            //Iterating over cells: Looping through cells to access their data
+                for (let i = 0; i < onlineCoursePrize.length; i++) {
+                    //Create a new row
+                    let newRow = document.createElement("tr");
+                    prizeTable.appendChild(newRow);
+                    //Add the td to the row
+                    let newCell_1 = document.createElement("td");
+                    let newCell_2 = document.createElement("td");
+                    //Add text content
+                    newCell_1.textContent = onlineCoursePrize[i]["name"];
+                    newCell_2.textContent = onlineCoursePrize[i]["quantity"];
+                    newRow.appendChild(newCell_1);
+                    newRow.appendChild(newCell_2);
+                }
+        };
 
         button.addEventListener("click", lottery);
 
