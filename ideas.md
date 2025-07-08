@@ -117,6 +117,12 @@ Question:
 8. How to clear local storage for a page
     - Use your keyboard's F12 key to open the Google Chrome Developer Tools Console. Click Application in the console's top menu. Expand the Local storage list located under the Storage section in the console's left menu. Right-click your site(s) and click Clear to delete the local storage.
 
+9. How to disabled a button?
+    button.disabled = true;
+    - How to do styling? 
+        button:disabled {
+            background-color: gray;
+        }
 
 Notes:
 1. It is dangerous to remove items from an array while you are looping forward through it. The loop can get confused and skip elements.
