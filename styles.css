@@ -108,8 +108,25 @@ h1 {
 }
 
 /* Individual Prize Sections */
-.onlineCoursePrizeSection, .stampCollectionPrizeSection {
+.stampCollectionPrizeSection {
     background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    width: 50%;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.onlineCoursePrizeSection {
+    background-color: rgb(124 255 246);
     border: 1px solid #e0e0e0;
     width: 50%;
     border-radius: 10px;
@@ -131,7 +148,7 @@ h1 {
 }
 
 /* Display Paragraphs for Prizes */
-.onlineCoursedisplay, .stampCollectiondisplay {
+.stampCollectiondisplay {
     font-size: 1.8em;
     font-weight: bold;
     color: #5cb85c; /* Green for success/prize */
@@ -142,9 +159,33 @@ h1 {
     flex-grow: 1;
 }
 
+.onlineCoursedisplay {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #ffffff; /* Green for success/prize */
+    min-height: 1.5em; /* Ensure consistent height even when empty */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
 /* Lottery Buttons */
-.onlineCourselotteryButton, .stampCollectionlotteryButton {
+.stampCollectionlotteryButton {
     background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.onlineCourselotteryButton {
+    background-color: #0357ab; /* Green */
     color: white;
     padding: 12px 25px;
     border: none;
