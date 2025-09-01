@@ -7,18 +7,34 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="left-panel">
-            <p class="display"></p>
-            <button class="lotteryButton">Pick a prize now!</button>
-        </div>
+    <div class="page-wrapper"> <!-- New wrapper div -->
+        <div class="container">
+            <h1>O-week 2025: 10 September (Day 1)</h1> <!-- Moved the title here -->
+            <div class="inside-container">
+                <div class="upper-panel">
+                    <div class="onlineCoursePrizeSection">
+                        <p style="font-size: 20px; color: #4A90E2; font-weight: bold;">Large prize: Online Courses</p>
+                        <p class="onlineCoursedisplay"></p>
+                        <button class="onlineCourselotteryButton">Pick a prize now!</button>
+                    </div>
+                    <div class="prizeCount">
+                        <p>Large prize remaining:</p>&nbsp;
+                        <p class="onlineCoursetotalNumber"></p>
+                    </div>
+                </div>
 
-        <div class="right-panel">
-            <table id="myTable">
-            <tr>
-                <th>Prize</th>
-                <th>Quantity</th>
-            </table>
+                <div class="lower-panel">
+                    <div class="stampCollectionPrizeSection">
+                        <p style="font-size: 20px; color: #4A90E2; font-weight: bold;">Middle Prize: Stamp Collection</p>
+                        <p class="stampCollectiondisplay"></p>
+                        <button class="stampCollectionlotteryButton">Pick a prize now!</button>
+                    </div>
+                    <div class="prizeCount">
+                        <p>Middle prize remaining:</p>&nbsp;
+                        <p class="stampCollectionTotalNumber"></p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     
@@ -40,75 +56,138 @@
             }
         ]
 
+        let stampCollectionPrize = [
+            {
+                name: "Stuffed Animals",
+                quantity: 20,
+            },
+            {
+                name: "books",
+                quantity: 20,
+            },
+            {
+                name: "happiness",
+                quantity: 20,
+            }
+        ]
+
         window.addEventListener("load", (event) => {
             if (localStorage.length === 0) {
                 console.log("localStorage is empty.");
-                creatingTable();
+                
+                showOnlineCoursePrizeTotalNumber();
+                showStampCollectionPrizeTotalNumber();
             } else {
                 onlineCoursePrize = JSON.parse(localStorage.getItem("onlineCoursePrize"));
                 console.log(onlineCoursePrize);
 
-                creatingTable();
+                showOnlineCoursePrizeTotalNumber();
+                showStampCollectionPrizeTotalNumber();
             }
         });
 
-        const display = document.querySelector(".display");
-        const button = document.querySelector(".lotteryButton");
-        const prizeTable = document.querySelector("#myTable")
+        const onlineCourselotteryButton = document.querySelector(".onlineCourselotteryButton");
+        const onlineCoursedisplay = document.querySelector(".onlineCoursedisplay");
+        const onlineCoursetotalNumber = document.querySelector(".onlineCoursetotalNumber");
+        
+        const stampCollectiondisplay = document.querySelector(".stampCollectiondisplay");
+        const stampCollectionlotteryButton = document.querySelector(".stampCollectionlotteryButton");
+        const stampCollectionTotalNumber = document.querySelector(".stampCollectionTotalNumber");
 
-        function lottery() {
-            display.textContent = "";
-
-            //Clear the table
-            // removeTableRow();
+        //For online course prize
+        function onlineCourseLottery() {
+            onlineCoursedisplay.textContent = "";
 
             setTimeout(() => {
-            //Generate a random Number and find the prize
-            let ranNum = getRandomIntInclusive(0, onlineCoursePrize.length-1);
-            let prize = onlineCoursePrize[ranNum];
-            
-            //Display the prize name on the screen
-            display.textContent = prize.name;
+                //Generate a random Number and find the prize
+                let ranNum = getRandomIntInclusive(0, onlineCoursePrize.length-1);
+                let prize = onlineCoursePrize[ranNum];
+                
+                //Display the prize name on the screen
+                onlineCoursedisplay.textContent = prize.name;
 
-            //Decrease the prize quantity by 1
-            prize.quantity -= 1;
-            
-            //Check and remove the item that it's prize quantity is already zero
-            onlineCoursePrize = onlineCoursePrize.filter(item => item.quantity > 0);
-            
-            //Generate a table for the prize items and prize quantity
+                //Decrease the prize quantity by 1
+                prize.quantity -= 1;
+                
+                //Check and remove the item that it's prize quantity is already zero
+                onlineCoursePrize = onlineCoursePrize.filter(item => item.quantity > 0);
 
-            //Access table by its ID
-            let table = document.querySelector("#myTable");
+                showOnlineCoursePrizeTotalNumber();
 
-            //Accessing Rows and Cells, select rows and cells within a table
-            let rows = table.rows;
+                //Store the value to localStorage:
+                localStorage.setItem("onlineCoursePrize", JSON.stringify(onlineCoursePrize));
+                console.log(localStorage);
 
-            //Update the content instead of generating a new table everytime
-            for (let i = 0; i < prizeTable.rows.length; i++) {
-                let cells = rows[i].cells;
-                for (j = 0; j < cells.length; j++) {
-                    if (cells[j].textContent === prize.name) {
-                        cells[j+1].textContent = prize.quantity
-                    }
-                }
-            }
-
-            //Store the value to localStorage:
-            localStorage.setItem("onlineCoursePrize", JSON.stringify(onlineCoursePrize));
-            console.log(localStorage);
-
-            //enabled the button
-            button.disabled = false;
-        }, "1000");
+                //enabled the button
+                onlineCourselotteryButton.disabled = false;
+            }, "1000");
         };
         
-        function removeTableRow() {
-            while (prizeTable.rows.length > 1) {
-                prizeTable.deleteRow(-1);
-            }
-            console.log(prizeTable);
+
+        function showOnlineCoursePrizeTotalNumber() {
+            onlineCoursetotalNumber.textContent = calculateOnlineCoursePrizeTotalNumber();
         }
+
+        function calculateOnlineCoursePrizeTotalNumber() {
+            let sum = 0;
+            for (const item of onlineCoursePrize) {
+                console.log(item);
+                sum += item.quantity;
+            }
+            return sum;
+        }
+
+        onlineCourselotteryButton.addEventListener("click", () => {
+            onlineCourselotteryButton.disabled = true;
+            onlineCourseLottery();
+        });
+
+        //For Stamp Collection Prize
+        function stampCollectionPrizeLottery() {
+            stampCollectiondisplay.textContent = "";
+
+            setTimeout(() => {
+                //Generate a random Number and find the prize
+                let ranNum = getRandomIntInclusive(0, stampCollectionPrize.length-1);
+                let prize = stampCollectionPrize[ranNum];
+                
+                //Display the prize name on the screen
+                stampCollectiondisplay.textContent = prize.name;
+
+                //Decrease the prize quantity by 1
+                prize.quantity -= 1;
+                
+                //Check and remove the item that it's prize quantity is already zero
+                stampCollectionPrize = stampCollectionPrize.filter(item => item.quantity > 0);
+
+                showStampCollectionPrizeTotalNumber();
+
+                //Store the value to localStorage:
+                localStorage.setItem("onlineCoursePrize", JSON.stringify(onlineCoursePrize));
+                console.log(localStorage);
+
+                //enabled the button
+                stampCollectionlotteryButton.disabled = false;
+            }, "1000");
+        };
+        
+        function showStampCollectionPrizeTotalNumber() {
+            stampCollectionTotalNumber.textContent = calculateStampCollectionPrizeTotalNumber();
+        }
+
+        function calculateStampCollectionPrizeTotalNumber() {
+            let sum = 0;
+            for (const item of stampCollectionPrize) {
+                console.log(item);
+                sum += item.quantity;
+            }
+            return sum;
+        }
+
+        stampCollectionlotteryButton.addEventListener("click", () => {
+            stampCollectionlotteryButton.disabled = true;
+            stampCollectionPrizeLottery();
+        });
 
         function getRandomIntInclusive(min, max) {
             //Math.ceil() round up and returns the smallest integer gratern than or equal to a given number
@@ -117,28 +196,6 @@
             const maxFloored = Math.floor(max);
             return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
         }
-
-        function creatingTable() {
-            //Iterating over cells: Looping through cells to access their data
-                for (let i = 0; i < onlineCoursePrize.length; i++) {
-                    //Create a new row
-                    let newRow = document.createElement("tr");
-                    prizeTable.appendChild(newRow);
-                    //Add the td to the row
-                    let newCell_1 = document.createElement("td");
-                    let newCell_2 = document.createElement("td");
-                    //Add text content
-                    newCell_1.textContent = onlineCoursePrize[i]["name"];
-                    newCell_2.textContent = onlineCoursePrize[i]["quantity"];
-                    newRow.appendChild(newCell_1);
-                    newRow.appendChild(newCell_2);
-                }
-        };
-
-        button.addEventListener("click", () => {
-            button.disabled = true;
-            lottery();
-        });
 
     </script>
 </body>
