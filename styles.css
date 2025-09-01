@@ -1,70 +1,245 @@
+/* General Body Styling */
 body {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
-.display {
-    height: 50px;
-}
-
-.container {
-    width: 100%;
-    height: 100vh;
-    display:flex;
-}
-
-.right-panel {
-    background-color: rgb(231, 253, 255);
-    width: 50%;
-    flex: 1 1 50%;
+    font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #f0f2f5 0%, #e0e6ed 100%); /* Soft gradient background */
+    color: #333;
+    padding: 20px; /* Add some padding around the entire content */
+    box-sizing: border-box; /* Include padding in element's total width and height */
 }
 
-.left-panel {
-    background-color: antiquewhite;
-    width: 50%;
+/* New: Page Wrapper for Title and Container */
+.page-wrapper {
     display: flex;
-    font-weight: 900;
-    color: rgb(86, 86, 86);
+    flex-direction: column; /* Stack title and container vertically */
+    align-items: center; /* Center horizontally */
+    gap: 30px; /* Space between title and container */
+    width: 100%;
+    max-width: 900px; /* Max width should match container for consistency */
+}
+
+
+/* Heading */
+h1 {
+    text-align: center;
+    color: #4A90E2; /* A vibrant blue */
+    /* margin-bottom: 30px; Removed from here, now handled by gap in page-wrapper */
+    font-size: 2.5em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+    width: 100%; /* Ensure h1 takes full width within page-wrapper */
+}
+
+.inside-container {
+    display: flex;
     flex-direction: column;
+}
+
+/* Main Container */
+.container {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    display: flex;
+    flex-direction: column; /* Default to column for small screens */
+    gap: 30px;
+    width: 100%; /* Takes full width of its parent (.page-wrapper) */
+    /* max-width: 900px; Removed from here, handled by page-wrapper */
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden; /* For any potential background elements */
+}
+
+/* Adding a playful element */
+.container::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 150px;
+    height: 150px;
+    background-color: rgba(100, 200, 255, 0.1);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.container::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background-color: rgba(255, 150, 200, 0.1);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+
+/* Panel Layout */
+.upper-panel, .lower-panel {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: row; /* Arranges panels side-by-side on larger screens */
+        justify-content: space-between;
+    }
+    .left-panel {
+        padding-right: 30px;
+        border-right: 1px solid #eee;
+    }
+    .right-panel {
+        padding-left: 30px;
+    }
+}
+
+/* Individual Prize Sections */
+.onlineCoursePrizeSection, .stampCollectionPrizeSection {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    width: 50%;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
     justify-content: center;
     align-items: center;
-    font-size: 60px;
-    flex: 1 1 50%;
 }
 
-button {
-    width: 200px;
-    background-color: brown;
+.onlineCoursePrizeSection:hover, .stampCollectionPrizeSection:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Display Paragraphs for Prizes */
+.onlineCoursedisplay, .stampCollectiondisplay {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #5cb85c; /* Green for success/prize */
+    min-height: 1.5em; /* Ensure consistent height even when empty */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+/* Lottery Buttons */
+.onlineCourselotteryButton, .stampCollectionlotteryButton {
+    background-color: #4CAF50; /* Green */
     color: white;
+    padding: 12px 25px;
     border: none;
-    padding: 0.5em 1em;
-    margin: 40px 0px 0px 0px;
-    font-size: 20px;
-    box-shadow: 5px 5px 15px 5px #000000;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
 }
 
-button:hover {
-    background-color: rgb(99, 0, 0);
+.onlineCourselotteryButton:hover, .stampCollectionlotteryButton:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
 }
 
-button:active {
-    transform: translate(5px, 5px);
+.onlineCourselotteryButton:disabled, .stampCollectionlotteryButton:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
 }
 
-button:disabled {
-    background-color: gray;
+/* Right Panel Prize Count Displays */
+.prizeCount {
+    display: flex;
+    width: 40%;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f8ff; /* Light blue background */
+    border: 1px solid #cceeff;
+    border-radius: 8px;
+    padding: 15px 20px;
+    font-size: 1.1em;
+    height: 80px;
+    color: #337ab7; /* Darker blue text */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-#myTable {
-    width: 100%;
-    margin: 20px;
-    border-collapse: collapse;
-    background-color: azure;
+.prizeCount p:first-child {
+    font-weight: normal;
+    margin-right: 10px;
 }
 
-th, td {
-    border: 1px solid rgb(148, 148, 148);
-    padding: 10px;
+.onlineCoursetotalNumber, .stampCollectionTotalNumber {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #E24A68; /* A contrasting color for numbers */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767px) {
+    .page-wrapper {
+        gap: 20px; /* Reduce gap on smaller screens */
+    }
+
+    .container {
+        padding: 20px;
+        flex-direction: column; /* Stack panels vertically on small screens */
+    }
+
+    h1 {
+        font-size: 2em;
+        /* margin-bottom: 20px; handled by page-wrapper gap */
+    }
+
+    .left-panel {
+        padding-right: 0;
+        border-right: none;
+    }
+
+    .right-panel {
+        padding-left: 0;
+        margin-top: 20px; /* Space between stacked panels */
+    }
+
+    .onlineCoursePrizeSection, .stampCollectionPrizeSection {
+        padding: 20px;
+    }
+
+    .onlineCoursedisplay, .stampCollectiondisplay {
+        font-size: 1.5em;
+    }
+
+    .onlineCourselotteryButton, .stampCollectionlotteryButton {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    .PrizeCount {
+        font-size: 1em;
+        padding: 12px 15px;
+    }
+
+    .onlineCoursetotalNumber, .stampCollectionTotalNumber {
+        font-size: 1.3em;
+    }
 }
