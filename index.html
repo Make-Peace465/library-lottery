@@ -13,7 +13,7 @@
             <div class="inside-container">
                 <div class="upper-panel">
                     <div class="onlineCoursePrizeSection">
-                        <p style="font-size: 20px; color: #006eff; font-weight: bold;">Online Courses</p>
+                        <p style="font-size: 30px; color: #006eff; font-weight: bold;">Online Courses</p>
                         <p class="onlineCoursedisplay"></p>
                         <button class="onlineCourselotteryButton">Pick a prize now!</button>
                     </div>
@@ -25,7 +25,7 @@
 
                 <div class="lower-panel">
                     <div class="stampCollectionPrizeSection">
-                        <p style="font-size: 20px; color: #4A90E2; font-weight: bold;">Stamp Collection</p>
+                        <p style="font-size: 30px; color: #4A90E2; font-weight: bold;">Stamp Collection</p>
                         <p class="stampCollectiondisplay"></p>
                         <button class="stampCollectionlotteryButton">Pick a prize now!</button>
                     </div>
@@ -42,33 +42,86 @@
         //Add variable for large prize/middle prize to keep track of the total number
         
         let onlineCoursePrize = [
-            {
-                name: "Stuffed Animals",
-                quantity: 20,
-            },
-            {
-                name: "cups",
-                quantity: 20,
-            },
-            {
-                name: "Notebooks",
-                quantity: 20,
-            }
+            { name: "Cedars A5 Bottle", quantity: 1 },
+            { name: "Cedars Coffee Mug", quantity: 1 },
+            { name: "chopsticks", quantity: 1 },
+            { name: "Collapsible Coffee Cup", quantity: 1 },
+            { name: "Cute Funny Handmade Vegetables", quantity: 9 },
+            { name: "Cutlery", quantity: 2 },
+            { name: "East China Normal University Wooden Coasters (Set)", quantity: 3 },
+            { name: "Eslite Coupons", quantity: 10 },
+            { name: "Folding Umbrella", quantity: 1 },
+            { name: "Han Dynasty Style Backflow Fragrance Set", quantity: 1 },
+            { name: "HKTDC Wireless Charger", quantity: 1 },
+            { name: "Insulate Bag", quantity: 1 },
+            { name: "Kaleidoscope", quantity: 1 },
+            { name: "Kings Multimedia USB Speaker", quantity: 1 },
+            { name: "Laptop Case", quantity: 2 },
+            { name: "Loomoo Sports Bluetooth Headset", quantity: 1 },
+            { name: "Lucky package", quantity: 3 },
+            { name: "Macau University of Science and Technology Magnetic (Set)", quantity: 1 },
+            { name: "Massage Guns", quantity: 1 },
+            { name: "Metal Feather Bookmark + Notebook", quantity: 12 },
+            { name: "Micro SD card 32GB", quantity: 1 },
+            { name: "Mini LED Book Lamp", quantity: 3 },
+            { name: "Mobile Phone Holder", quantity: 6 },
+            { name: "Nature Cup", quantity: 1 },
+            { name: "Notebook", quantity: 13 },
+            { name: "Panda Lego", quantity: 19 },
+            { name: "Pouch (Elsevier)", quantity: 1 },
+            { name: "Power Bank", quantity: 4 },
+            { name: "Puzzle", quantity: 2 },
+            { name: "rabbit light", quantity: 6 },
+            { name: "Rhino Plushie", quantity: 1 },
+            { name: "Round Wooden Wireless Charger", quantity: 3 },
+            { name: "SAGE Bunny Plushie", quantity: 3 },
+            { name: "Scarf", quantity: 1 },
+            { name: "Snake Plushie", quantity: 1 },
+            { name: "Springer Nature Rabbit Plushie", quantity: 1 },
+            { name: "Stationery set", quantity: 1 },
+            { name: "THULE Backpack", quantity: 1 },
+            { name: "Tiger Plushie", quantity: 2 },
+            { name: "Tote Bag", quantity: 10 },
+            { name: "Towel", quantity: 3 },
+            { name: "Travel Digital Bag", quantity: 1 },
+            { name: "Tumbler", quantity: 2 },
+            { name: "USB", quantity: 2 },
+            { name: "USB Book Reading Light", quantity: 8 }
         ]
 
         let stampCollectionPrize = [
-            {
-                name: "Stuffed Animals",
-                quantity: 20,
-            },
-            {
-                name: "books",
-                quantity: 20,
-            },
-            {
-                name: "happiness",
-                quantity: 20,
-            }
+            { name: "Animal/Sushu Labels", quantity: 1 },
+            { name: "Bookmarks", quantity: 5 },
+            { name: "Cedars Eye Mask", quantity: 1 },
+            { name: "Cell Phone Holder", quantity: 8 },
+            { name: "Cloth Mask", quantity: 1 },
+            { name: "Coasters", quantity: 2 },
+            { name: "Colorful tapes", quantity: 2 },
+            { name: "East China Normal University Bookmark (Set)", quantity: 3 },
+            { name: "Eco-friendly Bag", quantity: 5 },
+            { name: "Flocked Stickers", quantity: 1 },
+            { name: "HYREAD Beverage Bag", quantity: 1 },
+            { name: "HYREAD Cup Holder Bag", quantity: 1 },
+            { name: "Japanese Doll Postcard", quantity: 1 },
+            { name: "Key Chain", quantity: 1 },
+            { name: "Magnet", quantity: 1 },
+            { name: "Matchman Bookmark Pencil Case", quantity: 1 },
+            { name: "Memo Pad", quantity: 12 },
+            { name: "Non-woven Bag", quantity: 3 },
+            { name: "Notebook", quantity: 11 },
+            { name: "Notebook", quantity: 3 },
+            { name: "NUS Libraries Glasses Clothes", quantity: 1 },
+            { name: "Pencil Case", quantity: 29 },
+            { name: "Plastic Coaster", quantity: 1 },
+            { name: "Pouch", quantity: 2 },
+            { name: "Salty Fish", quantity: 1 },
+            { name: "Small Bag", quantity: 1 },
+            { name: "Small Drawstring Bag", quantity: 3 },
+            { name: "Stress Ball", quantity: 1 },
+            { name: "Taiwan News Postcard", quantity: 1 },
+            { name: "Tangram & Stickers", quantity: 1 },
+            { name: "Tote Bag", quantity: 6 }
+
         ]
 
         window.addEventListener("load", (event) => {
