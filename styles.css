@@ -126,7 +126,7 @@ h1 {
 }
 
 .onlineCoursePrizeSection {
-    background-color: rgb(124 255 246);
+    background-color: rgb(197, 255, 251);
     border: 1px solid #e0e0e0;
     width: 50%;
     border-radius: 10px;
@@ -162,7 +162,7 @@ h1 {
 .onlineCoursedisplay {
     font-size: 1.8em;
     font-weight: bold;
-    color: #ffffff; /* Green for success/prize */
+    color: #004089; /* Green for success/prize */
     min-height: 1.5em; /* Ensure consistent height even when empty */
     display: flex;
     justify-content: center;
@@ -185,7 +185,7 @@ h1 {
 }
 
 .onlineCourselotteryButton {
-    background-color: #0357ab; /* Green */
+    background-color: #4e81b4; /* Green */
     color: white;
     padding: 12px 25px;
     border: none;
