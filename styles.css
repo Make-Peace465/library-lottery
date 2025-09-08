@@ -148,7 +148,10 @@ h1 {
 }
 
 /* Display Paragraphs for Prizes */
-.stampCollectiondisplay {
+.onlineCourseDisplayPrizeName, 
+.onlineCourseDisplayTagName,
+.stampCollectionDisplayPrizeName, 
+.stampCollectionDisplayTagName {
     font-size: 1.8em;
     font-weight: bold;
     color: #5cb85c; /* Green for success/prize */
@@ -157,6 +160,7 @@ h1 {
     justify-content: center;
     align-items: center;
     flex-grow: 1;
+    margin: 5px;
 }
 
 .onlineCoursedisplay {
@@ -183,6 +187,49 @@ h1 {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     flex-shrink: 0;
 }
+
+.onlineCourselotteryButton {
+    background-color: #004089; /* Green */
+    height: 50px;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.onlineCourseUndoButton {
+    background-color: #004089; /* Green */
+    height: 50px;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.stampCollectionUndoButton {
+    background-color: #4CAF50; /* Green */
+    height: 50px;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
 
 .onlineCourselotteryButton {
     background-color: #4e81b4; /* Green */
